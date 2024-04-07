@@ -1,0 +1,16 @@
+[
+    {
+        "index": 0,
+        "timestamp": "2024-04-07 10:31:36.411369",
+        "data": "Genesis Block",
+        "previous_hash": "0",
+        "hash": "cea1a32f69e90dfa3a160e39b34a0aefd53760a704ff591f75b70e63a3262305"
+    },
+    {
+        "index": 1,
+        "timestamp": "2024-04-07 10:35:20.490967",
+        "data": "{\"UID\":\"45634323\",\"candidateName\":\"Candidate 1\",\"timestamp\":\"2024-04-07T05:05:20.482Z\"}",
+        "previous_hash": "cea1a32f69e90dfa3a160e39b34a0aefd53760a704ff591f75b70e63a3262305",
+        "hash": "0d1251fc2bb7b1f80eb15ea84c3523641bf4f88b10f010138fd3b68517dfe63b"
+    }
+]

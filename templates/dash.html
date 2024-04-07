@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<header>
+  <div class="header-left">
+    <h1>VOTEMAXXING</h1>
+  </div>
+  <div class="header-center">
+    <a href="{{ url_for('vote') }}">Voter</a>
+    <!-- <a href="{{ url_for('admin') }}">Admin</a> -->
+    <a href="#">Result</a>
+  </div>
+  <div class="header-right">
+    {% if user %}
+      <a href="#" class="register">{{ user.name }}</a>
+    {% else %}
+      <a href="#" class="register">Not logged in</a>
+    {% endif %}
+  </div>
+</header>
+
+
+<div class="center-content">
+  <h2>Vote with Blockchain</h2>
+  <p>Secure and transparent voting process</p>
+  <a href="#" class="register">Get Started</a>
+  <a href="#" class="login">Learn More</a>
+</div>
+
+<div class="features-section">
+  <div class="features-header">
+    <h2>Key Features</h2>
+    <p>Discover the powerful features that make our blockchain-based voting platform stand out</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-box">
+      <h3>Secure Voting</h3>
+      <p>Utilize blockchain technology for secure and tamper-proof voting</p>
+    </div>
+    <div class="feature-box">
+      <h3>Real-Time Result</h3>
+      <p>Instantly display voting results for transparency and accountability</p>
+    </div>
+    <div class="feature-box">
+      <h3>User Dashboard</h3>
+      <p>Allow users to create accounts, store and view their voting history</p>
+    </div>
+    <div class="feature-box">
+      <h3>Admin Controls</h3>
+      <p>Grant administrators full control over the voting process and results</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

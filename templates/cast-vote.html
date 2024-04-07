@@ -1,0 +1,88 @@
+
+
+{% extends "base.html" %}
+{% block body %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $.get("/candiList", function(data) {
+      $(".vote-table tbody").empty();
+      data.forEach(function(candidate) {
+        $(".vote-table tbody").append(`
+          <tr>
+            <td>${candidate.name}</td>
+            <td>
+              <button class="vote-button" onclick="submitVote('${candidate.name}')">Vote</button>
+              <div id="confirm-${candidate.name}" style="display: none;">
+                Do you want to vote for ${candidate.name}?
+                <button class="confirm-button" onclick="submitVote('${candidate.name}')">Yes</button>
+                <button class="cancel-button" onclick="cancelVote('${candidate.name}')">No</button>
+              </div>
+            </td>
+          </tr>
+        `);
+      });
+    });
+  });
+
+  function confirmVote(candidateName) {
+    // Your existing confirmVote function
+  }
+
+  function cancelVote(candidateName) {
+    // Your existing cancelVote function
+  }
+
+  function submitVote(candidateName) {
+  const UID = '{{ user.uid }}'; // Use Jinja2 to insert the UID
+  const timestamp = new Date().toISOString();
+  const voteData = { UID, candidateName, timestamp };
+  const encryptedVoteData = JSON.stringify(voteData); // Convert the voteData object to a JSON string
+
+  $.ajax({
+    url: '/recieveVotes',
+    type: 'POST',
+    data: { encrypted_object: encryptedVoteData },
+    success: function(response) {
+      // After the vote has been submitted, send the UID to /hasVoted
+      $.ajax({
+        url: '/hasVoted',
+        type: 'POST',
+        data: JSON.stringify({ uid: UID }), // Send the UID in the request body
+        contentType: 'application/json', // Set the content type to JSON
+        success: function(response) {
+          alert('Thank you for your vote!');
+          window.location.href = '/voteDash';
+        }
+      });
+    }
+  });
+}
+</script>
+<div class="vote-table">
+  <table>
+    <thead>
+      <tr>
+        <th>Option</th>
+        <th>Vote</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for option in options %}
+      <tr>
+        <td>{{ option.name }}</td>
+        <td>
+          <button class="vote-button" onclick="confirmVote('{{ option.name }}')">Vote</button>
+          <div id="confirm-{{ option.name }}" style="display: none;">
+            Do you want to vote for {{ option.name }}?
+            <button class="confirm-button" onclick="submitVote('{{ option.name }}')">Yes</button>
+            <button class="cancel-button" onclick="cancelVote('{{ option.name }}')">No</button>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

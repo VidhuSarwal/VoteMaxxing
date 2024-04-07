@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block body %}
+<header>
+  <!-- Navigation Bar -->
+  <div class="header-left">
+    <h1>VOTEMAXXING</h1>
+  </div>
+  <div class="header-right">
+    <a href="{{ url_for('homeDash')}}">Home</a>
+  </div>
+</header>
+<div class="voter-info">
+  <!-- Voter Information -->
+  <h2>Welcome, {{ voter.name }}!</h2>
+  <p>UID: {{ voter.uid }}</p>
+  <p>Phone Number: {{ voter.phone }}</p>
+  <p>Age: {{ voter.age }}</p>
+  
+</div>
+<div class="voting-button">
+  <!-- Voting Form -->
+  <button id="castVoteButton" class="big-link">Cast Vote</button>
+  <button class="big-link">Check Results</button>
+</div>
+<div class="instructions">
+  <!-- Instructions -->
+</div>
+<footer>
+  <!-- Footer -->
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $('#castVoteButton').click(function(e){
+    e.preventDefault(); // prevent the default action
+    $.get('/isStarted', function(data){
+      console.log(data);
+      if(data === true){
+        // Check if the user has already voted
+        $.get('/dupeCheck', function(data){
+          console.log(data);
+          if(data === false){
+            window.location.href = "{{ url_for('cast_vote') }}"; // redirect if true
+          } else {
+            alert('Already voted'); // show alert if false
+          }
+        });
+      } else {
+        alert('Not started yet'); // show alert if false
+      }
+    });
+  });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,166 @@
+body {
+    background-color: #1a1a1a;
+    color: #FFFFFF;
+    font-family: 'Helvetica', sans-serif;
+    font-style: normal;
+}
+
+h1, h2, h3 {
+    font-style: normal;
+}
+
+a {
+    color: inherit; /* Inherits the color of the parent element */
+    text-decoration: none; /* Removes the underline */
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-left{
+    flex-grow: 1;
+    text-align: left;
+  }
+  .header-right {
+    flex-grow: 1;
+    text-align: right;
+  }
+  
+  .header-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-right .register {
+    padding: 10px 10px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+  }
+
+  .center-content {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.center-content h2 {
+  font-size: 2em;
+}
+
+.center-content p {
+  font-size: 1.2em;
+}
+
+.center-content a {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.center-content .register {
+    background-color: #007bff;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.center-content .login {
+  background-color: #6c757d;
+  color: white;
+  border-radius: 10px;
+}
+
+.features-section {
+        text-align: center;
+        margin-top: 50px;
+      }
+      
+.features-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        }
+      
+.feature-box {
+        background-color: skyblue;
+        padding: 20px;
+        margin: 10px;
+        width: calc(50% - 40px); /* Subtract margins and padding */
+        box-sizing: border-box;
+        border-radius: 5px;
+        color: #000000; /* Black */
+      }
+
+.features-header {
+    margin: auto;
+    width: 50%; /* or any other percentage or fixed value */
+    }
+
+.voter-info {
+    background-color: slategray;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: larger;
+    
+}
+
+.big-link {
+    display: block;
+    width: 50%;  /* Adjust this to change the button width */
+    margin: auto;  /* Center the buttons */
+    border: none;
+    background-color: grey;
+    padding: 20px 40px;  /* Increase this to increase the button size */
+    font-size: 20px;  /* Increase this to increase the font size */
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 20px;  /* Increase this to add more space between the buttons */
+  }
+  
+  .big-link:hover {
+    background-color: lightgrey;
+  }
+
+  
+  .vote-table {
+    color: black;
+    width: 60%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  }
+  
+  .vote-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .vote-table th, .vote-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .vote-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 24px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .vote-button:hover {
+    background-color: #45a049;
+  }

@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block body %}
+<head>
+    <title>Admin Page</title>
+    <!-- Add your CSS links here -->
+</head>
+<body>
+    <h1>Admin Page</h1>
+
+    <h2>Voting Overview</h2>
+        <div style="display: flex; justify-content: space-between; text-align: center;">
+            <div>
+                <h2>Voters</h2>
+                <!-- <table>
+                    <tr>
+                        <th>Voter ID</th>
+                        <th>Voter Name</th>
+                    </tr>
+                    {% for voter in voters %}
+                    <tr>
+                        <td>{{ voter._id }}</td>
+                        <td>{{ voter.name }}</td>
+                    </tr>
+                    {% endfor %}
+                </table> -->
+            </div>
+        
+            <div>
+                <h2>Candidates</h2>
+                <!-- <table>
+                    <tr>
+                        <th>Candidate ID</th>
+                        <th>Candidate Name</th>
+                    </tr>
+                    {% for candidate in candidates %}
+                    <tr>
+                        <td>{{ candidate._id }}</td>
+                        <td>{{ candidate.name }}</td>
+                    </tr>
+                    {% endfor %}
+                </table> -->
+            </div>
+        </div>
+    <h2>Manage Voting</h2> 
+    <!-- To be implemented LATERRRRRRRR --------------XX----------------->
+    <form action="{{ url_for('startVote') }}" method="post">
+        <button type="submit">Start Vote</button>
+    </form>
+    <form action="{{ url_for('endVote') }}" method="post">
+        <button type="submit">Stop Vote</button>
+    </form>
+
+    <h2>Manage Voters</h2>
+    <form id="manage-voters" method="post" action="{{ url_for('manage_voters') }}">
+        <label for="voter-id">Voter ID:</label>
+        <input type="text" id="voter-id" name="voter_id" required>
+        <label for="voter-name">Voter Name:</label>
+        <input type="text" id="voter-name" name="voter_name" required>
+        <label for="voter-phone">Voter Phone:</label>
+        <input type="text" id="voter-phone" name="voter_phone" required>
+        <label for="voter-age">Voter Age:</label>
+        <input type="text" id="voter-age" name="voter_age" required>
+        <input type="submit" value="Add Voter">
+        <input type="submit" value="Update Voter">
+        <input type="submit" value="Delete Voter">
+    </form>
+    <!-- Add a form here to add, update, and delete voters -->
+    <h2>Manage Candidates</h2>
+    <form id="manage-candidates" method="post" action="{{ url_for('manage_candidates') }}">
+        <label for="candidate-id">Candidate ID:</label>
+        <input type="text" id="candidate-id" name="candidate_id" required>
+        <label for="candidate-name">Candidate Name:</label>
+        <input type="text" id="candidate-name" name="candidate_name" required>
+        <input type="submit" value="Add Candidate">
+        <input type="submit" value="Update Candidate">
+        <input type="submit" value="Delete Candidate">
+    </form>
+    <!-- Add a form here to add, update, and delete voters -->
+
+
+    <h2>Voting Results</h2>
+    <a href="{{ url_for('results') }}" class="btn">View Results</a>
+    <!-- Add a table or list here to display the voting results -->
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+  // Handle the start voting form submission
+  $('form[action="{{ url_for('startVote') }}"]').on('submit', function(e) {
+    e.preventDefault(); // Prevent the form from being submitted normally
+
+    $.post('/startVoting', function(response) {
+      // If the request is successful, display an alert
+      alert('Voting has started successfully!');
+    });
+  });
+
+  // Handle the end voting form submission
+  $('form[action="{{ url_for('endVote') }}"]').on('submit', function(e) {
+    e.preventDefault(); // Prevent the form from being submitted normally
+
+    $.post('/endVote', function(response) {
+      // If the request is successful, display an alert
+      alert('Voting has ended successfully!');
+    });
+  });
+});
+</script>
+{% endblock %}
